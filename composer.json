@@ -1,0 +1,32 @@
+{
+    "name": "hayrican/laravel-azure-service-bus",
+    "description": "Laravel Queue driver for Azure Service Bus",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Hayri Can",
+            "email": "hayricanbarcin@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^7.3|^8.0",
+        "illuminate/support": "^5.0|^6.0|^7.0|^8.0",
+        "illuminate/queue": "^5.0|^6.0|^7.0|^8.0",
+        "illuminate/container": "^5.0|^6.0|^7.0|^8.0",
+        "illuminate/contracts": "^5.0|^6.0|^7.0|^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "HayriCan\\LaravelAzureServiceBus\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "HayriCan\\LaravelAzureServiceBus\\AzureServiceBusServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "dev"
+}
