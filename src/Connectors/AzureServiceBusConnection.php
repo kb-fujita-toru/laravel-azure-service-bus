@@ -15,7 +15,7 @@ class AzureServiceBusConnection
     private string $keyName;
     private string $keyValue;
 
-    const AZURE_SERVICE_BUS_SAS_TOKEN = 'azure:service-bus-sas-token';
+    const AZURE_SERVICE_BUS_SAS_TOKEN = 'azure:service-bus-sas-token-%s';
 
     /**
      * Create a new AzureServiceBusConnection instance.
@@ -42,9 +42,10 @@ class AzureServiceBusConnection
     public function generateSasToken(): string
     {
         $time = 60 * 60 * 24 * 7; // 7 days
+        $cacheKey = sprintf(self::AZURE_SERVICE_BUS_SAS_TOKEN, $this->queue);
 
         return Cache::remember(
-            self::AZURE_SERVICE_BUS_SAS_TOKEN,
+            $cacheKey,
             Carbon::now()->addSeconds($time - 3600),
             function () use ($time) {
                 $targetUri = strtolower(rawurlencode(strtolower($this->uri)));
